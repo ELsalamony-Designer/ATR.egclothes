@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ATR.egclothes/main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial;
+        background-image: url(https://i.postimg.cc/BvwMbDDG/wbg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: 20px;
+        margin: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 20px;
+        padding-bottom: 15px;
+      }
+
+      .product {
+        flex: 0 0 auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 100%;
+        max-width: 250px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .product img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .accs img {
+        width: 20px;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .sizes {
+        margin: 10px 0;
+      }
+
+      .sizes label {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .cart {
+        background: #fff;
+        padding: 15px;
+        border: 1px solid #aaa;
+        border-radius: 10px;
+        max-width: 300px;
+        margin: 30px auto;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .cart h3 {
+        margin-top: 0;
+      }
+
+      .cart-item {
+        margin-bottom: 8px;
+      }
+
+      .remove-btn {
+        margin-left: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .remove-btn img {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+      }
+
+      button {
+        padding: 10px 15px;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #333;
+      }
+
+      .checkout-form {
+        display: none;
+        background: #fff;
+        padding: 15px;
+        border: 1px solid #aaa;
+        max-width: 350px;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .sizes {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .sizes label {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to ATR Store</h1>
+    <p style="text-align: left; margin-top: 10px">
+      Do you want to see our <a href="news.html">News?</a>
+    </p>
+
+    <h3>Pants</h3>
+    <div class="container">
+      
+      <div class="product" data-category="pants">
+        <img
+          src="https://i.postimg.cc/bvkWyWrY/DBP.jpg"
+          alt="Dark Blue Sweatpants"
+        />
+        <h3>Dark Blue Sweatpants</h3>
+        <p>Price: 850 EGP</p>
+        <div class="sizes" data-product="Dark Blue Sweatpants">
+          <label
+            ><input
+              type="radio"
+              name="size-dark-blue-sweatpants"
+              value="M"
+              checked
+            />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-dark-blue-sweatpants" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-dark-blue-sweatpants" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-dark-blue-sweatpants" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Dark Blue Sweatpants', 850, 'size-dark-blue-sweatpants')"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <h3>Shirts/T-Shirts</h3>
+    <div class="container">
+      <div class="product" data-category="shirts">
+        <img
+          src="https://i.postimg.cc/SxwHpkyt/DGTS.jpg"
+          alt="Dark Gray T-Shirt"
+        />
+        <h3>Dark Gray T-Shirt</h3>
+        <p>Price: 650 EGP</p>
+        <div class="sizes" data-product="Dark Gray T-Shirt">
+          <label
+            ><input
+              type="radio"
+              name="size-dark-gray-tshirt"
+              value="M"
+              checked
+            />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-dark-gray-tshirt" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-dark-gray-tshirt" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-dark-gray-tshirt" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Dark Gray T-Shirt', 650, 'size-dark-gray-tshirt')"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+    <h2>Suits</h2>
+    <h3>Suits - Men</h3>
+    <div class="container">
+      <div class="product" data-category="suits-men">
+        <img src="https://i.postimg.cc/mZy4NzbZ/BBS.jpg" alt="Baby Blue Suit" />
+        <h3>Baby Blue Suit</h3>
+        <p>Price: 1500 EGP</p>
+        <div class="sizes" data-product="Baby Blue Suit">
+          <label
+            ><input type="radio" name="size-baby-blue-suit" value="M" checked />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-baby-blue-suit" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-baby-blue-suit" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-baby-blue-suit" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Baby Blue Suit', 1500, 'size-baby-blue-suit')"
+        >
+          Add to Cart
+        </button>
+      </div>
+      <div class="product" data-category="suits-men">
+        <img
+          src="https://i.postimg.cc/GmH1CXv9/DBS.jpg"
+          alt="Baby Broun Suit"
+        />
+        <h3>Baby Brown Suit</h3>
+        <p>Price: 1500 EGP</p>
+        <div class="sizes" data-product="Baby Brown Suit">
+          <label
+            ><input
+              type="radio"
+              name="size-baby-brown-suit"
+              value="M"
+              checked
+            />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-baby-brown-suit" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-baby-brown-suit" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-baby-brown-suit" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Baby Brown Suit', 1500, 'size-baby-brown-suit')"
+        >
+          Add to Cart
+        </button>
+      </div>
+      <div class="product" data-category="suits-men">
+        <img src="https://i.postimg.cc/3RHM27VD/BPS.jpg" alt="" />
+        <h3>Baby Pink Suit</h3>
+        <p>Price: 1500 EGP</p>
+        <div class="sizes" data-product="Baby Pink Suit">
+          <label
+            ><input type="radio" name="size-baby-pink-suit" value="M" checked />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-baby-pink-suit" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-baby-pink-suit" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-baby-pink-suit" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Baby Pink Suit', 1500, 'size-baby-pink-suit')"
+        >
+          Add to Cart
+        </button>
+      </div>
+      <div class="product" data-category="suits-men">
+        <img src="https://i.postimg.cc/nV289ykC/DGS.jpg" alt="Dark Gray Suit" />
+        <h3>Dark Gray Suit</h3>
+        <p>Price: 1500 EGP</p>
+        <div class="sizes" data-product="Dark Gray Suit">
+          <label
+            ><input type="radio" name="size-dark-gray-suit" value="M" checked />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-dark-gray-suit" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-dark-gray-suit" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-dark-gray-suit" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Dark Gray Suit', 1500, 'size-dark-gray-suit')"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <h3>Suits - Women</h3>
+    <div class="container">
+      <div class="product" data-category="suits-women">
+        <img
+          src="https://i.postimg.cc/j5TPsn7K/BPSW.jpg"
+          alt="Baby Pink Women Suit"
+        />
+        <h3>Pink Women's Suit</h3>
+        <p>Price: 1500 EGP</p>
+        <div class="sizes" data-product="Pink Women's Suit">
+          <label
+            ><input
+              type="radio"
+              name="size-pink-women-suit"
+              value="M"
+              checked
+            />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-pink-women-suit" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-pink-women-suit" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-pink-women-suit" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Baby Pink Women Suit', 1500, 'size-pink-women-suit')"
+        >
+          Add to Cart
+        </button>
+      </div>
+      <div class="product" data-category="suits-women">
+        <img
+          src="https://i.postimg.cc/J0PnCGbT/DGW.jpg"
+          alt="Dark Gray Women Suit"
+        />
+        <h3>Gray Women's Suit</h3>
+        <p>Price: 1500 EGP</p>
+        <div class="sizes" data-product="Gray Women's Suit">
+          <label
+            ><input
+              type="radio"
+              name="size-gray-women-suit"
+              value="M"
+              checked
+            />
+            M</label
+          >
+          <label
+            ><input type="radio" name="size-gray-women-suit" value="L" />
+            L</label
+          >
+          <label
+            ><input type="radio" name="size-gray-women-suit" value="XL" />
+            XL</label
+          >
+          <label
+            ><input type="radio" name="size-gray-women-suit" value="XXL" />
+            XXL</label
+          >
+        </div>
+        <button
+          onclick="addToCartWithSize('Dark Gray Women Suit', 1500, 'size-gray-women-suit')"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="cart">
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <div style="margin-bottom: 10px">
+        <input
+          type="text"
+          id="voucher-input"
+          placeholder="Enter Voucher Code"
+          style="width: calc(100% - 70px); display: inline-block"
+        />
+        <button
+          onclick="applyVoucher()"
+          style="width: 60px; display: inline-block; padding: 8px 0"
+        >
+          Apply
+        </button>
+      </div>
+      <p><strong>Subtotal:</strong> <span id="subtotal">0</span> EGP</p>
+      <p><strong>Discount:</strong> <span id="discount">0</span> EGP</p>
+      <p><strong>Total:</strong> <span id="total">0</span> EGP</p>
+      <button onclick="showCheckout()">Checkout</button>
+      <button onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <div class="checkout-form" id="checkout-form">
+      <h3>Submit Your Order</h3>
+      <form
+        id="orderForm"
+        action="https://formsubmit.co/hamletmohamed5@gmail.com"
+        method="POST"
+      >
+        <input type="hidden" name="_subject" value="New Order from ATR Store" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="Name" id="name" placeholder="Full Name" required />
+        <input
+          type="text"
+          name="Phone Number"
+          id="phone"
+          placeholder="Phone Number"
+          required
+        />
+        <textarea name="Address" id="address" placeholder="Address" required></textarea>
+        <textarea name="Order" id="order-details" readonly required></textarea>
+        <button type="submit">Send Order</button>
+      </form>
+
+      <script>
+        document.getElementById("orderForm").addEventListener("submit", function (e) {
+          const name = document.getElementById("name").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const address = document.getElementById("address").value.trim();
+
+          if (
+            name === "ELsalamony" &&
+            phone === "01210409574" &&
+            address === "atr.designer"
+          ) {
+            e.preventDefault();
+            window.location.href = "Login.html"; //
+          }
+          if (
+            name === "Hamlet" &&
+            phone === "01274699451" &&
+            address === "atr.owner1"
+          ) {
+            e.preventDefault();
+            window.location.href = "Login.html";
+          }
+        });
+      </script>
+    </div>
+    <div class="accs">
+      <h2>
+        <img
+          src="https://i.postimg.cc/fTtx7CxL/Facee-Book.png"
+          alt="Facebook"
+        />
+        <a href="https://www.facebook.com/share/16gCsUYy2D/"
+          >Atr.egclothes</a
+        >
+      </h2>
+      <h2>
+        <img src="https://i.postimg.cc/ZKG6wNcL/Insta.jpg" alt="Instagram" />
+        <a href="https://www.instagram.com/atr.eg_clothes?igsh=cjF5ZG04OXZoOXNr"
+          >atr.eg_clothes</a
+        >
+      </h2>
+      <h2>
+        <img src="https://i.postimg.cc/jjKPbrBw/tiktok.png" alt="TikTok" />
+        <a href="https://www.tiktok.com/@atr.eg?_t=ZS-8wcTlljLwht&_r=1"
+          >Atr_egclothes</a
+        >
+      </h2>
+    </div>
+
+    <script>
+      let cart = [];
+      let subtotal = 0; // متغير جديد للمجموع قبل الخصم
+      let discount = 0; // متغير جديد للخصم
+      let finalTotal = 0; // متغير جديد للمجموع النهائي بعد الخصم
+
+      // تحديد أكواد الكوبونات ونسبة الخصم الخاصة بها (على شكل كسور عشرية)
+      const vouchers = {
+        "452023": 0.15, // خصم 15%
+      };
+
+      function addToCartWithSize(name, price, sizeName) {
+        const sizeRadios = document.getElementsByName(sizeName);
+        let selectedSize = null;
+        for (const radio of sizeRadios) {
+          if (radio.checked) {
+            selectedSize = radio.value;
+            break;
+          }
+        }
+        if (!selectedSize) {
+          alert("Please select a size!");
+          return;
+        }
+        cart.push({ name, price, size: selectedSize });
+        updateCart();
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+      }
+
+      function clearCart() {
+        cart = [];
+        discount = 0; // إعادة تعيين الخصم عند مسح السلة
+        document.getElementById("voucher-input").value = ""; // مسح حقل الكوبون
+        updateCart();
+      }
+
+      function calculateTotals() {
+        subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        finalTotal = subtotal - (subtotal * discount);
+      }
+
+      function applyVoucher() {
+        const voucherCode = document
+          .getElementById("voucher-input")
+          .value.trim()
+          .toUpperCase();
+        if (vouchers[voucherCode] !== undefined) {
+          discount = vouchers[voucherCode];
+          alert(
+            `Voucher "${voucherCode}" applied! You got a ${
+              discount * 100
+            }% discount.`
+          );  
+        } else {
+          discount = 0; // إعادة تعيين الخصم إذا كان الكوبون غير صالح
+          alert("Invalid voucher code.");
+        }
+        updateCart();
+      }
+      function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        const subtotalEl = document.getElementById("subtotal");
+        const discountEl = document.getElementById("discount");
+        const totalEl = document.getElementById("total");
+        const orderDetails = document.getElementById("order-details");
+        cartItems.innerHTML = "";
+        let orderText = "";
+
+        cart.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = "cart-item";
+          div.innerHTML = `${item.name} (Size: ${item.size}) - ${item.price} EGP 
+            <button class="remove-btn" onclick="removeFromCart(${index})">
+              <img src="https://i.postimg.cc/Px5CFBmX/Untitled371-20250527133421.png" alt="remove" />
+            </button>`;
+          cartItems.appendChild(div);
+          orderText += `${item.name} (Size: ${item.size}) - ${item.price} EGP\n`;
+        });
+
+        calculateTotals(); // إعادة حساب المجاميع في كل مرة يتم فيها تحديث السلة
+
+        subtotalEl.textContent = subtotal.toFixed(2); // عرض المجموع قبل الخصم بكسرين عشريين
+        discountEl.textContent = (subtotal * discount).toFixed(2); // عرض مبلغ الخصم
+        totalEl.textContent = finalTotal.toFixed(2); // عرض المجموع النهائي
+
+        if (orderDetails) {
+          orderDetails.value =
+            orderText +
+            `Subtotal: ${subtotal.toFixed(2)} EGP\n` +
+            `Discount: ${(subtotal * discount).toFixed(2)} EGP\n` +
+            `Total: ${finalTotal.toFixed(2)} EGP`;
+        }
+      }
+
+      function showCheckout() {
+        document.getElementById("checkout-form").style.display = "block";
+      }
+
+      // استدعاء updateCart() الأولي لعرض السلة الفارغة والمجموع عند التحميل
+      updateCart();
+    </script>
+  </body>
+</html>
